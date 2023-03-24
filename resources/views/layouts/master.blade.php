@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    @yield('stylesfirst')
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Vendors -->
+    <link rel="stylesheet" href="{{ asset('/vendors/DataTables/datatables.css') }}" />
     <link rel="stylesheet" href="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/bold.css') }}">
@@ -18,7 +18,6 @@
 
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app-dark.css') }}">
-    @yield('styles')
 </head>
 
 <body>
@@ -46,8 +45,11 @@
             </footer>
         </div>
     </div>
+
+
     <script src="{{ asset('/js/app.js') }}"></script>
 
+    <script src="{{ asset('/vendors/DataTables/datatables.js') }}"></script>
     <script src="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/vendors/tinymce/tinymce.min.js') }}"></script>
 
