@@ -83,7 +83,7 @@
                         <a href="">Masyarakat</a>
                     </li>
                     <li class="submenu-item">
-                        <a href="">Admin</a>
+                        <a href="{{ route('admin.index') }}">Admin</a>
                     </li>
                     <li class="submenu-item">
                         <a href="">Staff</a>

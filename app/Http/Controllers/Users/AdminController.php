@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Pengaduan;
 
-class PengaduanController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,11 +14,11 @@ class PengaduanController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Laporan Pengaduan',
-            'pengaduan' => Pengaduan::all(),
+            'title' => 'Admin',
+            'admin' => User::where('level', 'admin')->get(),
         ];
 
-        return view('dashboard.pengaduan.index', $data);
+        return view('dashboard.users.admin.index', $data);
     }
 
     /**

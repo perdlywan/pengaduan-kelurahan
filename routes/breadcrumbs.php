@@ -13,3 +13,9 @@ Breadcrumbs::for('pengaduan', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Pengaduan', route('pengaduan.index'));
 });
+
+// Dashboard > Users [Admin]
+Breadcrumbs::for('users.admin', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Users [Admin]', route('admin.index'));
+});
