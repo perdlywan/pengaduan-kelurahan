@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('styles')
-<link rel="stylesheet" href="assets/css/shared/iconly.css">
-@endsection
-
 @section('content')
 <div class="page-heading">
   <h3>{{ $title }}</h3>

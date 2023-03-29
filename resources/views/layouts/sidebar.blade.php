@@ -61,14 +61,14 @@
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-title">Menu</li>
-            <li class="sidebar-item active">
-                <a href="/dashboard" class='sidebar-link'>
+            <li class="sidebar-item {{ Route::is('dashboard') ? 'active' : ''  }}">
+                <a href="{{ route('dashboard') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-item">
-                <a href="" class='sidebar-link'>
+            <li class="sidebar-item {{ Route::is('pengaduan.index') ? 'active' : ''  }}">
+                <a href="{{ route('pengaduan.index') }}" class='sidebar-link'>
                     <i class="bi bi-file-earmark-medical-fill"></i>
                     <span>Pengaduan</span>
                 </a>
@@ -83,7 +83,7 @@
                         <a href="/masyarakat">Masyarakat</a>
                     </li>
                     <li class="submenu-item">
-                        <a href="">Admin</a>
+                        <a href="{{ route('admin.index') }}">Admin</a>
                     </li>
                     <li class="submenu-item">
                         <a href="">Staff</a>
