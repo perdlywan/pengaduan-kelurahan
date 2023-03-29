@@ -80,7 +80,7 @@
                 </a>
                 <ul class="submenu">
                     <li class="submenu-item">
-                        <a href="">Masyarakat</a>
+                        <a href="/masyarakat">Masyarakat</a>
                     </li>
                     <li class="submenu-item">
                         <a href="{{ route('admin.index') }}">Admin</a>
