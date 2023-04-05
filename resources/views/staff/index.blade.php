@@ -19,7 +19,7 @@
                     </div>
                     @endif
                     <table class="table table-striped" id="table1">
-                        <a href="/masyarakat/add" class="btn btn-primary"><i class="bi bi-plus"></i>Add</a>
+                        <a href="/staff/add" class="btn btn-primary"><i class="bi bi-plus"></i>Add</a>
                         <thead>
                             <tr>
                                 <th>NIK</th>
@@ -31,17 +31,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($masyarakats as $masyarakat)
+                            @foreach ($staffs as $staff)
                                 <tr>
-                                    <td>{{ $masyarakat->nik }}</td>
-                                    <td>{{ $masyarakat->nama }}</td>
-                                    <td>{{ $masyarakat->username }}</td>
-                                    <td>{{ $masyarakat->email }}</td>
-                                    <td>{{ $masyarakat->telp }}</td>
+                                    <td>{{ $staff->nik }}</td>
+                                    <td>{{ $staff->nama }}</td>
+                                    <td>{{ $staff->username }}</td>
+                                    <td>{{ $staff->email }}</td>
+                                    <td>{{ $staff->telp }}</td>
                                     <td>
-                                        <a href="/masyarakat/{{ $masyarakat->username }}/edit"
+                                        <a href="/staff/{{ $staff->username }}/edit"
                                             class="btn icon btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
-                                        <form action="/masyarakat/{{ $masyarakat->id }}" method="POST" class="d-inline">
+                                        <form action="/staff/{{ $staff->id }}" method="POST" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button href="#" class="btn icon btn-danger btn-sm"><i

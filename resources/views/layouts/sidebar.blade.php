@@ -79,16 +79,23 @@
                     <span>Users</span>
                 </a>
                 <ul class="submenu">
-                    <li class="submenu-item">
+                    <li class="submenu-item {{ Request::is('masyarakat*') ? 'active' : '' }}">
                         <a href="/masyarakat">Masyarakat</a>
                     </li>
                     <li class="submenu-item">
-                        <a href="">Admin</a>
+                        <a href="/admin">Admin</a>
                     </li>
                     <li class="submenu-item">
-                        <a href="">Staff</a>
+                        <a href="/staff">Staff</a>
                     </li>
                 </ul>
+            </li>
+            <li class="sidebar-item">
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" class="sidebar-item">
+                        Logout</button>
+                </form>
             </li>
         </ul>
     </div>
