@@ -37,65 +37,40 @@
             </div>
         </div>
     </div>
-    {{-- <div class="sidebar-menu">
-        <ul class="menu">{% for sidebarItem in sidebarItems %}{% if sidebarItem.isTitle %}
-            <li class="sidebar-title">{{sidebarItem.name}}</li>
-            {% else %}
-            <li
-                class="sidebar-item {{ 'active' if (sidebarItem.url == filename or filename|startsWith(sidebarItem.key)) }} {{'has-sub' if sidebarItem.submenu.length > 0 }}">
-                <a href="{{sidebarItem.url if sidebarItem.url!==undefined else '#'}}" class='sidebar-link'>
-                    <i class="bi bi-{{ sidebarItem.icon }}"></i>
-                    <span>{{sidebarItem.name}}</span>
-                </a>{% if sidebarItem.submenu.length > 0 %}
-                <ul class="submenu {{ 'active' if (sub.url == filename or filename|startsWith(sidebarItem.key)) }}">{%
-                    for sub in sidebarItem.submenu %}
-                    <li class="submenu-item {{ 'active' if sub.url == filename }}">
-                        <a href="{{ sub.url }}">{{ sub.name }}</a>
-                    </li>{% endfor %}
-                </ul>{% endif %}
-            </li>
-            {% endif %}{% endfor %}
-        </ul>
-    </div> --}}
 
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-title">Menu</li>
-            <li class="sidebar-item active">
+            <li class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
                 <a href="/dashboard" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-item">
-                <a href="" class='sidebar-link'>
+            <li class="sidebar-item {{ Request::is('pengaduan*') ? 'active' : '' }}">
+                <a href="/pengaduan" class='sidebar-link'>
                     <i class="bi bi-file-earmark-medical-fill"></i>
                     <span>Pengaduan</span>
                 </a>
             </li>
-            <li class="sidebar-item has-sub">
+            <li
+                class="sidebar-item has-sub {{ Request::is('masyarakat*') ? 'active' : '' }} {{ Request::is('admin*') ? 'active' : '' }} {{ Request::is('staff*') ? 'active' : '' }}">
                 <a href="" class='sidebar-link'>
                     <i class="bi bi-person-fill"></i>
                     <span>Users</span>
                 </a>
-                <ul class="submenu">
+                <ul
+                    class="submenu {{ Request::is('masyarakat*') ? 'active submenu-open' : '' }} {{ Request::is('admin*') ? 'active submenu-open' : '' }} {{ Request::is('staff*') ? 'active submenu-open' : '' }}">
                     <li class="submenu-item {{ Request::is('masyarakat*') ? 'active' : '' }}">
                         <a href="/masyarakat">Masyarakat</a>
                     </li>
-                    <li class="submenu-item">
+                    <li class="submenu-item {{ Request::is('admin*') ? 'active' : '' }}">
                         <a href="/admin">Admin</a>
                     </li>
-                    <li class="submenu-item">
+                    <li class="submenu-item {{ Request::is('staff*') ? 'active' : '' }}">
                         <a href="/staff">Staff</a>
                     </li>
                 </ul>
-            </li>
-            <li class="sidebar-item">
-                <form action="/logout" method="POST">
-                    @csrf
-                    <button type="submit" class="sidebar-item">
-                        Logout</button>
-                </form>
             </li>
         </ul>
     </div>

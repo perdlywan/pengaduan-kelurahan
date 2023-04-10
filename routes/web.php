@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\MasyarakatController;
 use App\Http\Controllers\StaffController;
 
@@ -29,6 +30,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+Route::prefix('pengaduan')->middleware('auth')->group(function () {
+    Route::get('/', [PengaduanController::class, 'index']);
+});
 
 Route::prefix('masyarakat')->middleware('auth')->group(function () {
     Route::get('/', [MasyarakatController::class, 'index']);

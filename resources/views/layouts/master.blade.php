@@ -26,21 +26,64 @@
         <div id="sidebar" class="active">
             @include('layouts.sidebar')
         </div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
+        <div id="main" class="layout-navbar">
+            <header class="bg-white">
+                <nav class="navbar navbar-expand navbar-light navbar-top">
+                    <div class="container-fluid">
+                        <img src="{{ asset('/images/logo/logo.png') }}" alt="logo" width="36">
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="ms-auto dropdown">
+                                <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-menu d-flex align-items-center">
+                                        <div class="user-name text-end me-3">
+                                            <h6 class="mb-0 text-gray-600 text-capitalize">{{ Auth::user()->nama }}</h6>
+                                            <p class="mb-0 text-sm text-gray-600 text-capitalize">{{ Auth::user()->level
+                                                }}</p>
+                                        </div>
+                                        <div>
+                                            <i class="bi bi-person-circle" style="font-size: 36px;"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
+                                    style="min-width: 11rem;">
+                                    <li>
+                                        <h6 class="dropdown-header text-capitalize">{{ Auth::user()->nama }}</h6>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
+                                            Profile</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <form action="/logout" method="POST">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
             </header>
-            @yield('content')
-            <footer>
+            <div id="main-content">
+                @yield('content')
+            </div>
+            <footer style="padding: 0 2rem;">
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
+                        <p>2023 &copy; Kelurahan Kabayan</p>
                     </div>
                     <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="https://saugi.me">Saugi</a></p>
+                        <p>Sistem Informasi Pengaduan Masyarakat</p>
                     </div>
                 </div>
             </footer>
