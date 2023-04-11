@@ -27,7 +27,7 @@
             @include('layouts.sidebar')
         </div>
         <div id="main" class="layout-navbar">
-            <header class="bg-white">
+            <header>
                 <nav class="navbar navbar-expand navbar-light navbar-top">
                     <div class="container-fluid">
                         <img src="{{ asset('/images/logo/logo.png') }}" alt="logo" width="36">

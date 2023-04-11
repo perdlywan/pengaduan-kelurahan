@@ -29,6 +29,7 @@
                             <th>Status</th>
                             <th>Tanggapan</th>
                             <th>Rating</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,15 @@
                             <td><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                     class="bi bi-star-fill"></i></td>
+                            <td>
+                                <a href="" class="btn icon btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
+                                <form action="" method="POST" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button href="#" class="btn icon btn-danger btn-sm"><i class="bi bi-x"
+                                            onclick="return confirm('Are you sure you want to delete this item?');"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
