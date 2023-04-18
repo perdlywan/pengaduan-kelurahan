@@ -12,13 +12,13 @@ class StaffController extends Controller
     {
         $data["staffs"] = User::where('users.level', 'staff')->get();
         $data["title"] = "Staff";
-        return view('staff.index', $data);
+        return view('dashboard.staff.index', $data);
     }
 
     public function add()
     {
         $data["title"] = "Tambah Staff";
-        return view('staff.add', $data);
+        return view('dashboard.staff.add', $data);
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class StaffController extends Controller
             'password' => 'required|min:8',
             'telp' => 'required',
         ]);
-        
+
         $validatedData['password'] = hash::make($validatedData['password']);
         $validatedData['level'] = 'staff';
 
@@ -42,7 +42,7 @@ class StaffController extends Controller
     public function edit(User $staff)
     {
         $data = User::where('users.username', $staff->username)->get();
-        return view('staff.edit', [
+        return view('dashboard.staff.edit', [
             'staff' => $data[0],
             'title' => "Ubah Data Staff"
         ]);
@@ -67,16 +67,16 @@ class StaffController extends Controller
             $rules['email'] = 'required|email:dns|unique:users';
         }
 
-        if($request->password != null){
+        if ($request->password != null) {
             $rules['password'] = 'min:8';
         }
 
         $validatedData = $request->validate($rules);
-        
-        if($request->password != null){
+
+        if ($request->password != null) {
             $validateData['password'] = hash::make($request->password);
         }
-    
+
         User::where('id', $staff->id)->update($validatedData);
 
         return redirect('/staff')->with('success', 'Data Staff Berhasil Diubah!');

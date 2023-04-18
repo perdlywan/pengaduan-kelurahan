@@ -7,6 +7,23 @@
     <title>GetShayna by BuildWith Angga</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <!-- Vendors -->
+    <link rel="stylesheet" href="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendors/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendors/iconly/bold.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendors/iconly/broken.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendors/iconly/bulk.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app-dark.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('js/extensions/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/simple-datatables.css') }}">
 </head>
 
 <body>
@@ -401,10 +418,10 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content bg-white border-0">
                             <div class="modal-header border-0" style="padding: 2rem; padding-bottom: 0">
-                                <a class="modal-title" id="targetModalLabel">
-                                    <img style="margin-top: 0.5rem"
-                                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header3/Header-3-6.png"
-                                        alt="" />
+                                <a class="modal-title text-decoration-none" id="targetModalLabel">
+                                    <img style="margin-right: 0.75rem" src="{{ asset('/images/logo/logo.png') }}" alt=""
+                                        height="30" />
+                                    <strong style="color: #243142;">Kelurahan Kabayan</strong>
                                 </a>
                                 <button type="button" class="close btn-close text-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
@@ -415,44 +432,16 @@
                                         <a class="nav-link main" style="color: #243142;" href="#">Home</a>
                                     </li>
                                     <li class="nav-item position-relative">
-                                        <a class="nav-link" href="#">Feature</a>
+                                        <a class="nav-link" href="#tata-cara">Tata Cara</a>
+                                    </li>
+                                    @if (Auth::check())
+                                    <li class="nav-item position-relative">
+                                        <a class="nav-link" href="#">Pengaduan</a>
                                     </li>
                                     <li class="nav-item position-relative">
-                                        <a class="nav-link" href="#">Pricing</a>
+                                        <a class="nav-link" href="#">Profile</a>
                                     </li>
-                                    <li class="nav-item position-relative">
-                                        <a class="nav-link" href="#">Blog</a>
-                                    </li>
-                                    <li class="nav-item position-relative">
-                                        <a class="nav-link" data-bs-toggle="collapse" href="#collapse" role="button"
-                                            aria-expanded="false" aria-controls="collapse">
-                                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M5.85 1.69346C3.5304 1.69346 1.65 3.57386 1.65 5.89346C1.65 8.21305 3.5304 10.0935 5.85 10.0935C8.1696 10.0935 10.05 8.21305 10.05 5.89346C10.05 3.57386 8.1696 1.69346 5.85 1.69346ZM0.25 5.89346C0.25 2.80066 2.75721 0.293457 5.85 0.293457C8.94279 0.293457 11.45 2.80066 11.45 5.89346C11.45 8.98625 8.94279 11.4935 5.85 11.4935C2.75721 11.4935 0.25 8.98625 0.25 5.89346Z"
-                                                    fill="#8B9CAF" />
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M8.85503 8.89848C9.12839 8.62512 9.57161 8.62512 9.84497 8.89848L14.045 13.0985C14.3183 13.3718 14.3183 13.8151 14.045 14.0884C13.7716 14.3618 13.3284 14.3618 13.055 14.0884L8.85503 9.88843C8.58166 9.61506 8.58166 9.17185 8.85503 8.89848Z"
-                                                    fill="#8B9CAF" />
-                                            </svg>
-                                        </a>
-                                        <form method class="collapse position-absolute form center-search border-0"
-                                            id="collapse">
-                                            <div class="d-flex">
-                                                <input type="text" class="rounded-full border-0 focus:outline-none"
-                                                    placeholder="Search" />
-                                                <button class="btn" type="button">
-                                                    <svg style="width: 20px; height: 20px" data-bs-toggle="collapse"
-                                                        href="#collapse" role="button" aria-expanded="false"
-                                                        aria-controls="collapse" fill="none" stroke="#273B56"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="modal-footer border-0" style="padding: 2rem; padding-top: 0.75rem">
@@ -465,15 +454,35 @@
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo">
                     <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-                        <li class="nav-item active position-relative">
-                            <a class="nav-link main=" style="color: #243142;" href="#">Home</a>
+                        <li class="nav-item {{ Request::is('/') ? 'active' : '' }} position-relative">
+                            <a class="nav-link" style="{{ Request::is('/') ? 'color: #243142;' : '' }}"
+                                href="/">Home</a>
+                        </li>
+                        <li class="nav-item position-relative {{ Request::is('#tata-cara') ? 'active' : '' }}">
+                            <a class="nav-link" style="{{ Request::is('#tata-cara') ? 'color: #243142;' : '' }}" href="
+                                /#tata-cara">Tata Cara</a>
+                        </li>
+                        @if (Auth::check())
+                        <li class="nav-item {{ Request::is('pengaduan*') ? 'active' : ''  }} position-relative">
+                            <a class="nav-link" style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
+                                href="/pengaduan">Pengaduan</a>
                         </li>
                         <li class="nav-item position-relative">
-                            <a class="nav-link" href="#">Tata Cara</a>
+                            <a class="nav-link" href="#">Profile</a>
                         </li>
+                        @endif
                     </ul>
+
+                    @if (Auth::check())
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button href="/logout"
+                            class="btn btn-fill text-white bg-danger border-danger btn-danger">Logout</button>
+                    </form>
+                    @else
                     <a href="/login" class="btn btn-default btn-no-fill">Log In</a>
                     <a href="/register" class="btn btn-fill text-white">Register</a>
+                    @endif
                 </div>
             </nav>
             <div class="hr">
@@ -485,82 +494,8 @@
 						" />
             </div>
 
-            <div>
-                <div class="mx-auto d-flex flex-lg-row flex-column hero bg-white shadow rounded-3">
-                    <!-- Left Column -->
-                    <div
-                        class="left-column flex-lg-grow-1 d-flex flex-column align-items-lg-start text-lg-start align-items-center text-center">
-                        <h1 class="title-text-big">
-                            Pengaduan Masyarakat<br class="d-lg-block d-none" />
-                            <span style="color: #4E91F9">Kelurahan Kabayan</span </h1>
-                            <p class="text-caption">
-                                Punya keluhan? Yuk laporkan ke kami!
-                            </p>
-                            <div
-                                class="d-flex flex-sm-row flex-column align-items-center mx-auto mx-lg-0 justify-content-center justify-content-lg-start gap-3">
-                                <button class="btn btn-get text-white d-inline-flex">
-                                    Buat Laporan
-                                </button>
-                            </div>
-                    </div>
+            @yield('content')
 
-                    <!-- Right Column -->
-                    <div class="right-column d-flex justify-content-center justify-content-lg-start text-center pe-0">
-                        <img class="d-lg-block d-none hero-right"
-                            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header3/Header-3-2.png"
-                            alt="" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="container py-4 py-xl-5">
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-4" style="margin-top: 24px;">
-                    <div class="col">
-                        <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                                src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                            <div class="py-4">
-                                <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">1. Tulis
-                                    Laporan</h4>
-                                <p class="text-caption" style="color: #243142;">Tulis laporan keluhan Anda dengan jelas
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                                src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                            <div class="py-4">
-                                <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">2. Proses
-                                    Verifikasi</h4>
-                                <p class="text-caption" style="color: #243142;">Tunggu sampai laporan Anda diveerifikasi
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                                src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                            <div class="py-4">
-                                <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">3. Tindak
-                                    Lanjut</h4>
-                                <p class="text-caption" style="color: #243142;">Laporan Anda sedang dalam tindak lanjut
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                                src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                            <div class="py-4">
-                                <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">4.
-                                    Selesai</h4>
-                                <p class="text-caption" style="color: #243142;">Laporan pengaduan telah selesai ditindak
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <footer class="text-center py-4">
                 <div class="container">
                     <div class="row row-cols-1 row-cols-lg-3">
@@ -615,6 +550,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
+
+    <script src="{{ asset('/js/app.js') }}"></script>
+
+    <script src="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('/vendors/tinymce/tinymce.min.js') }}"></script>
+
+    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('/js/main.js') }}"></script>
+
+    <script src="{{ asset('js/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+    <script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
 </body>
 
 </html>

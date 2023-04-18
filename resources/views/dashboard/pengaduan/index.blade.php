@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.layouts.master')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('js/extensions/simple-datatables/style.css') }}">
@@ -19,29 +19,33 @@
                 </div>
                 @endif
                 <table class="table table-striped" id="table1">
-                    <a href="/staff/add" class="btn btn-primary"><i class="bi bi-plus"></i>Add</a>
+                    <a href="/masyarakat/add" class="btn btn-primary"><i class="bi bi-plus"></i>Add</a>
                     <thead>
                         <tr class="text-primary">
-                            <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Telepon</th>
+                            <th>Dari</th>
+                            <th>Tanggal</th>
+                            <th>Pesan</th>
+                            <th>Foto</th>
+                            <th>Status</th>
+                            <th>Tanggapan</th>
+                            <th>Rating</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($staffs as $staff)
                         <tr>
-                            <td>{{ $staff->nik }}</td>
-                            <td>{{ $staff->nama }}</td>
-                            <td>{{ $staff->username }}</td>
-                            <td>{{ $staff->email }}</td>
-                            <td>{{ $staff->telp }}</td>
+                            <td>John Doe</td>
+                            <td>2021-01-01</td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</td>
+                            <td><img src="{{ asset('images/logo/logo.png') }}" alt="" width="100"></td>
+                            <td><span class="badge bg-success">Selesai</span></td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</td>
+                            <td><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i></td>
                             <td>
-                                <a href="/staff/{{ $staff->username }}/edit" class="btn icon btn-warning btn-sm"><i
-                                        class="bi bi-pencil"></i></a>
-                                <form action="/staff/{{ $staff->id }}" method="POST" class="d-inline">
+                                <a href="" class="btn icon btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
+                                <form action="" method="POST" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button href="#" class="btn icon btn-danger btn-sm"><i class="bi bi-x"
@@ -49,7 +53,6 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>

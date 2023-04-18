@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.layouts.master')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('js/extensions/simple-datatables/style.css') }}">
@@ -19,7 +19,7 @@
                 </div>
                 @endif
                 <table class="table table-striped" id="table1">
-                    <a href="/masyarakat/add" class="btn btn-primary"><i class="bi bi-plus"></i>Add</a>
+                    <a href="/admin/add" class="btn btn-primary"><i class="bi bi-plus"></i>Add</a>
                     <thead>
                         <tr class="text-primary">
                             <th>NIK</th>
@@ -31,17 +31,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($masyarakats as $masyarakat)
+                        @foreach ($admins as $admin)
                         <tr>
-                            <td>{{ $masyarakat->nik }}</td>
-                            <td>{{ $masyarakat->nama }}</td>
-                            <td>{{ $masyarakat->username }}</td>
-                            <td>{{ $masyarakat->email }}</td>
-                            <td>{{ $masyarakat->telp }}</td>
+                            <td>{{ $admin->nik }}</td>
+                            <td>{{ $admin->nama }}</td>
+                            <td>{{ $admin->username }}</td>
+                            <td>{{ $admin->email }}</td>
+                            <td>{{ $admin->telp }}</td>
                             <td>
-                                <a href="/masyarakat/{{ $masyarakat->username }}/edit"
-                                    class="btn icon btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
-                                <form action="/masyarakat/{{ $masyarakat->id }}" method="POST" class="d-inline">
+                                <a href="/admin/{{ $admin->username }}/edit" class="btn icon btn-warning btn-sm"><i
+                                        class="bi bi-pencil"></i></a>
+                                <form action="/admin/{{ $admin->id }}" method="POST" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button href="#" class="btn icon btn-danger btn-sm"><i class="bi bi-x"

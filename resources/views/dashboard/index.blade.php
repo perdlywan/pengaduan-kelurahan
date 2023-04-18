@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('dashboard.layouts.master')
 
 @section('styles')
 <link rel="stylesheet" href="assets/css/shared/iconly.css">
