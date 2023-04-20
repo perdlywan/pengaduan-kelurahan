@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/broken.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/bulk.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendors/sweetalert2/sweetalert2.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app-dark.css') }}">
@@ -24,7 +25,7 @@
 <body>
     <div id="app">
         <div id="sidebar" class="active">
-            @include('dashboard.layouts.sidebar')
+            @include('layouts.sidebar')
         </div>
         <div id="main" class="layout-navbar">
             <header>
@@ -93,6 +94,7 @@
 
     <script src="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/vendors/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 

@@ -31,7 +31,7 @@ class RegisterController extends Controller
         $validatedData['level'] = 'masyarakat';
 
         User::create($validatedData);
-      
+
         return redirect('/login')->with('success', 'Registration successfull! Please login');
     }
 }

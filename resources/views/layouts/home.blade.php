@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>GetShayna by BuildWith Angga</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/broken.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/bulk.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app-dark.css') }}">
@@ -445,8 +447,8 @@
                                 </ul>
                             </div>
                             <div class="modal-footer border-0" style="padding: 2rem; padding-top: 0.75rem">
-                                <button class="btn btn-default btn-no-fill">Sign In</button>
-                                <button class="btn btn-fill text-white">Register</button>
+                                <a href="/login" class="btn btn-default btn-no-fill">Login</a>
+                                <a href="/register" class="btn btn-fill text-white">Register</a>
                             </div>
                         </div>
                     </div>
@@ -555,6 +557,9 @@
 
     <script src="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/vendors/tinymce/tinymce.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -562,6 +567,8 @@
 
     <script src="{{ asset('js/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
     <script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
+
+    @yield('scripts')
 </body>
 
 </html>

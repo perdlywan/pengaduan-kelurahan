@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.master')
+@extends('layouts.dashboard')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('js/extensions/simple-datatables/style.css') }}">

@@ -31,6 +31,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::prefix('pengaduan')->middleware('auth')->group(function () {
     Route::get('/', [PengaduanController::class, 'index']);
+    Route::post('/', [PengaduanController::class, 'store'])->name('pengaduan.store');
+    Route::get('/{pengaduan}/edit', [PengaduanController::class, 'edit']);
+    Route::put('/{pengaduan}', [PengaduanController::class, 'update'])->name('pengaduan.update');
+    Route::delete('/{pengaduan}', [PengaduanController::class, 'destroy']);
 });
 
 Route::prefix('masyarakat')->middleware('auth')->group(function () {
