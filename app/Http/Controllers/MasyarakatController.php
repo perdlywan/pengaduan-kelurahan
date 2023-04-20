@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 class MasyarakatController extends Controller
 {
     public function index()
@@ -12,14 +13,14 @@ class MasyarakatController extends Controller
         $this->authorize('admin&staff');
         $data["masyarakats"] = User::where('users.level', 'masyarakat')->get();
         $data["title"] = "Masyarakat";
-        return view('masyarakat.index', $data);
+        return view('dashboard.masyarakat.index', $data);
     }
 
     public function add()
     {
         $this->authorize('admin&staff');
         $data["title"] = "Tambah Masyarakat";
-        return view('masyarakat.add', $data);
+        return view('dashboard.masyarakat.add', $data);
     }
 
     public function store(Request $request)
@@ -33,7 +34,7 @@ class MasyarakatController extends Controller
             'password' => 'required|min:8',
             'telp' => 'required',
         ]);
-        
+
         $validatedData['password'] = hash::make($validatedData['password']);
         $validatedData['level'] = 'masyarakat';
 
@@ -45,7 +46,7 @@ class MasyarakatController extends Controller
     {
         $this->authorize('admin&staff');
         $data = User::where('users.username', $masyarakat->username)->get();
-        return view('masyarakat.edit', [
+        return view('dashboard.masyarakat.edit', [
             'masyarakat' => $data[0],
             'title' => "Ubah Data Masyarakat"
         ]);
@@ -71,16 +72,16 @@ class MasyarakatController extends Controller
             $rules['email'] = 'required|email:dns|unique:users';
         }
 
-        if($request->password != null){
+        if ($request->password != null) {
             $rules['password'] = 'min:8';
         }
 
         $validatedData = $request->validate($rules);
-        
-        if($request->password != null){
+
+        if ($request->password != null) {
             $validateData['password'] = hash::make($request->password);
         }
-    
+
         User::where('id', $masyarakat->id)->update($validatedData);
 
         return redirect('/masyarakat')->with('success', 'Data Masyarakat Berhasil Diubah!');
