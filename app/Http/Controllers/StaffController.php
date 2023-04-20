@@ -10,6 +10,7 @@ class StaffController extends Controller
 {
     public function index()
     {
+        $this->authorize('admin');
         $data["staffs"] = User::where('users.level', 'staff')->get();
         $data["title"] = "Staff";
         return view('staff.index', $data);
@@ -17,12 +18,14 @@ class StaffController extends Controller
 
     public function add()
     {
+        $this->authorize('admin');
         $data["title"] = "Tambah Staff";
         return view('staff.add', $data);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('admin');
         $validatedData = $request->validate([
             'nik' => 'required|min:16|unique:users',
             'nama' => 'required',
@@ -41,6 +44,7 @@ class StaffController extends Controller
 
     public function edit(User $staff)
     {
+        $this->authorize('admin');
         $data = User::where('users.username', $staff->username)->get();
         return view('staff.edit', [
             'staff' => $data[0],
@@ -50,6 +54,7 @@ class StaffController extends Controller
 
     public function update(Request $request, User $staff)
     {
+        $this->authorize('admin');
         $rules = [
             'nama' => 'required',
             'telp' => 'required',
@@ -84,6 +89,7 @@ class StaffController extends Controller
 
     public function destroy(User $staff)
     {
+        $this->authorize('admin');
         User::destroy($staff->id);
         return redirect('/staff')->with('success', 'Data Staff Berhasil Dihapus!');
     }

@@ -53,25 +53,33 @@
                     <span>Pengaduan</span>
                 </a>
             </li>
+            @can('admin&staff')
             <li
                 class="sidebar-item has-sub {{ Request::is('masyarakat*') ? 'active' : '' }} {{ Request::is('admin*') ? 'active' : '' }} {{ Request::is('staff*') ? 'active' : '' }}">
+              
                 <a href="" class='sidebar-link'>
                     <i class="bi bi-person-fill"></i>
                     <span>Users</span>
                 </a>
                 <ul
                     class="submenu {{ Request::is('masyarakat*') ? 'active submenu-open' : '' }} {{ Request::is('admin*') ? 'active submenu-open' : '' }} {{ Request::is('staff*') ? 'active submenu-open' : '' }}">
+                    @can('admin&staff')
                     <li class="submenu-item {{ Request::is('masyarakat*') ? 'active' : '' }}">
                         <a href="/masyarakat">Masyarakat</a>
                     </li>
+                    @endcan
+                    @can('admin')
                     <li class="submenu-item {{ Request::is('admin*') ? 'active' : '' }}">
                         <a href="/admin">Admin</a>
                     </li>
                     <li class="submenu-item {{ Request::is('staff*') ? 'active' : '' }}">
                         <a href="/staff">Staff</a>
                     </li>
+                    @endcan
                 </ul>
             </li>
+            @endcan
+         
         </ul>
     </div>
 </div>

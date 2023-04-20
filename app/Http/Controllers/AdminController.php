@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 class AdminController extends Controller
 {
     public function index()
     {
+        $this->authorize('admin');
         $data["admins"] = User::where('users.level', 'admin')->get();
         $data["title"] = "Admin";
         return view('admin.index', $data);
@@ -17,12 +17,14 @@ class AdminController extends Controller
 
     public function add()
     {
+        $this->authorize('admin');
         $data["title"] = "Tambah Admin";
         return view('admin.add', $data);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('admin');
         $validatedData = $request->validate([
             'nik' => 'required|min:16|unique:users',
             'nama' => 'required',
@@ -41,6 +43,7 @@ class AdminController extends Controller
 
     public function edit(User $admin)
     {
+        $this->authorize('admin');
         $data = User::where('users.username', $admin->username)->get();
         return view('admin.edit', [
             'admin' => $data[0],
@@ -50,6 +53,7 @@ class AdminController extends Controller
 
     public function update(Request $request, User $admin)
     {
+        $this->authorize('admin');
         $rules = [
             'nama' => 'required',
             'telp' => 'required',
@@ -84,6 +88,7 @@ class AdminController extends Controller
 
     public function destroy(User $admin)
     {
+        $this->authorize('admin');
         User::destroy($admin->id);
         return redirect('/admin')->with('success', 'Data Admin Berhasil Dihapus!');
     }
