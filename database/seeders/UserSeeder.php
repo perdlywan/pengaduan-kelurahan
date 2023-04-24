@@ -37,6 +37,28 @@ class UserSeeder extends Seeder
                 'created_at'     => date('Y-m-d H:i:s'),
                 'updated_at'     => date('Y-m-d H:i:s'),
             ],
+            [
+                'nik'  => '3333333333333333',
+                'nama' => 'admin',
+                'username' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('12345678'),
+                'telp' => '02112345678',
+                'level' => 'admin',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
+            [
+                'nik'  => '4444444444444444',
+                'nama' => 'staff',
+                'username' => 'staff',
+                'email' => 'staff@gmail.com',
+                'password' => Hash::make('12345678'),
+                'telp' => '02112345678',
+                'level' => 'staff',
+                'created_at'     => date('Y-m-d H:i:s'),
+                'updated_at'     => date('Y-m-d H:i:s'),
+            ],
         ];
 
         User::insert($user);

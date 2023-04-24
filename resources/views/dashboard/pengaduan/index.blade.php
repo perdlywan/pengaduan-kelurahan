@@ -19,7 +19,6 @@
                 </div>
                 @endif
                 <table class="table table-striped" id="table1">
-                    <a href="/masyarakat/add" class="btn btn-primary"><i class="bi bi-plus"></i>Add</a>
                     <thead>
                         <tr class="text-primary">
                             <th>Dari</th>

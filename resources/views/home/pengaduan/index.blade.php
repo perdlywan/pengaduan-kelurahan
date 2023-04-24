@@ -21,15 +21,19 @@
                             <i data-feather="x"></i>
                         </button>
                     </div>
-                    <form id="form-pengaduan" data-action="{{ route('pengaduan.store') }}" method="POST">
+                    <form id="form-pengaduan" data-action="{{ route('pengaduan.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
-                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="id" />
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="user_id" />
                             <input type="hidden" name="status" value="proses" id="status" />
 
                             <div class="mb-3">
                                 <label class="form-label">Foto</label>
-                                <input class="form-control" type="file" id="file" />
+                                <input class="form-control" type="file" id="foto" name="foto" />
+                            </div>
+                            <div class="mb-3">
+                                <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
                             </div>
                             <div>
                                 <label class="form-label">Pesan<sup class="text-danger">*</sup></label>
@@ -68,7 +72,7 @@
             <tr id="index_{{ $item->id }}">
                 <td>{{ $item->created_at->format('Y-m-d') }}</td>
                 <td>{{ $item->pesan }}</td>
-                <td><img src="{{ asset('images/logo/logo.png') }}" alt="" width="100"></td>
+                <td><img src="{{ asset('images/pengaduan/' . $item->foto) }}" alt="" width="100"></td>
                 <td><span class="badge bg-success">{{ $item->status }}</span></td>
                 <td>{{ $item->tanggapan }}</td>
                 <td>{{ $item->rating }}</td>
@@ -97,7 +101,7 @@
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <form id="form-edit" method="PUT">
+            <form id="form-edit" method="PUT" class="overflow-auto">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id-edit" />
@@ -105,7 +109,10 @@
 
                     <div class="mb-3">
                         <label class="form-label">Foto</label>
-                        <input class="form-control" type="file" id="file" />
+                        <input class="form-control" type="file" id="foto-edit" />
+                    </div>
+                    <div class="mb-3">
+                        <img src="https://placehold.it/80x80" id="preview-edit" class="img-thumbnail">
                     </div>
                     <div>
                         <label class="form-label">Pesan<sup class="text-danger">*</sup></label>
@@ -134,6 +141,18 @@
     $(document).ready(function () {
         var table = $('#table1');
         var form = $('#form-pengaduan');
+
+        $('#foto').change(function(){
+            const file = this.files[0];
+            if (file){
+                let reader = new FileReader();
+                reader.onload = function(event){
+                    console.log(event.target.result);
+                    $('#preview').attr('src', event.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
 
         // POST
         $(form).on('submit', function (e) {
@@ -167,7 +186,7 @@
                         <tr id="index_${ response.data.id }">
                             <td>${ parsedTanggal }</td>
                             <td>${ response.data.pesan }</td>
-                            <td><img src="{{ asset('images/logo/logo.png') }}" alt="" width="100"></td>
+                            <td><img src="{{ asset('images/pengaduan') }}/${ response.data.foto }" alt="" width="100"></td>
                             <td><span class="badge bg-success">${ response.data.status }</span></td>
                             <td></td>
                             <td></td>
@@ -184,6 +203,9 @@
                     `
 
                     $(table).find('tbody').prepend(row)
+
+                    $('#foto').val('')
+                    $('#pesan').val('')
 
                     $('#store').attr('data-bs-dismiss', 'modal')
                     $('#store').click()
@@ -210,6 +232,25 @@
                 success: function (response) {
                     $('#id-edit').val(response.data[0].id)
                     $('#pesan-edit').val(response.data[0].pesan)
+                    if (response.data[0].foto) {
+                        $('#preview-edit').attr('src', "{{ asset('images/pengaduan') }}/" + response.data[0].foto)
+                    } else {
+                        $('#preview-edit').attr('src', "https://placehold.it/80x80")
+                    }
+
+                    $('#foto-edit').change(function(){
+                        const file = this.files[0];
+                        console.log(file);
+                        if (file){
+                            let reader = new FileReader();
+                            reader.onload = function(event){
+                                console.log(event.target.result);
+                                $('#preview-edit').attr('src', event.target.result);
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                    
 
                     $('#modal-edit').modal('show')
                 },
