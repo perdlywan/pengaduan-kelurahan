@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/broken.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendors/iconly/bulk.css') }}">
-    <link rel="stylesheet" href="{{ asset('/vendors/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app-dark.css') }}">
@@ -94,11 +94,33 @@
 
     <script src="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/vendors/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ asset('/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('/js/main.js') }}"></script>
+
+    @if (session()->has('login-success'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    
+        Toast.fire({
+            icon: 'success',
+            title: 'Login berhasil!'
+        })
+    </script>
+    @endif
+
     @yield('js')
 </body>
 

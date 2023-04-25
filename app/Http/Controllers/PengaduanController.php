@@ -17,7 +17,7 @@ class PengaduanController extends Controller
             $data['pengaduan'] = Pengaduan::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
             return view('home.pengaduan.index', $data);
         } else {
-            $data['pengaduan'] = Pengaduan::all();
+            $data['pengaduan'] = Pengaduan::with('user')->orderBy('created_at', 'desc')->get();
             return view('dashboard.pengaduan.index', $data);
         }
     }
@@ -63,27 +63,47 @@ class PengaduanController extends Controller
 
     public function edit($id)
     {
-        $pengaduan = Pengaduan::where('id', $id)->get();
+        if (Auth::user()->level == 'masyarakat') {
+            $pengaduan = Pengaduan::where('id', $id)->where('user_id', Auth::user()->id)->get();
 
-        return response()->json([
-            'status' => 'success',
-            'data' => $pengaduan
-        ]);
+            return response()->json([
+                'status' => 'success',
+                'data' => $pengaduan
+            ]);
+        } else {
+            $pengaduan = Pengaduan::where('id', $id)->with('user')->get();
+
+            return view('dashboard.pengaduan.edit', [
+                'pengaduan' => $pengaduan[0],
+                'title' => "Ubah Data Pengaduan"
+            ]);
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'pesan' => 'required',
-        ]);
+        if (Auth::user()->level == 'masyarakat') {
+            $data = $request->validate([
+                'pesan' => 'required',
+            ]);
 
-        $pengaduan = Pengaduan::where('id', $id)->update($data);
+            $pengaduan = Pengaduan::where('id', $id)->update($data);
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data berhasil diubah',
-            'data' => $data
-        ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Data berhasil diubah',
+                'data' => $data
+            ]);
+        } else {
+            $data = $request->validate([
+                'status' => 'required',
+                'tanggapan' => 'required',
+            ]);
+
+            $pengaduan = Pengaduan::where('id', $id)->update($data);
+
+            return redirect('/pengaduan')->with('success', 'Data berhasil diubah');
+        }
     }
 
     public function destroy($id)

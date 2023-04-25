@@ -576,6 +576,27 @@
     <script src="{{ asset('js/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
     <script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
 
+    @if (session()->has('login-success'))
+    <script>
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: 'success',
+        title: 'Login berhasil!'
+    })
+    </script>
+    @endif
+
     @yield('scripts')
 </body>
 

@@ -73,15 +73,23 @@
                 <td>{{ $item->created_at->format('Y-m-d') }}</td>
                 <td>{{ $item->pesan }}</td>
                 <td><img src="{{ asset('images/pengaduan/' . $item->foto) }}" alt="" width="100"></td>
-                <td><span class="badge bg-success">{{ $item->status }}</span></td>
+                <td><span class="badge {{ ($item->status == 'proses') ? 'bg-primary' : 'bg-success' }}"
+                        style="font-weight: 400;">{{ $item->status
+                        }}</span></td>
                 <td>{{ $item->tanggapan }}</td>
-                <td>{{ $item->rating }}</td>
                 <td>
+                    {{ $item->rating }}
+                </td>
+                <td>
+                    @if ($item->status == 'proses')
                     <a id="btn-edit" data-id="{{ $item->id }}" href="javascript:void(0)"
                         class="btn icon btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit"><i
                             class="bi bi-pencil"></i></a>
                     <a id="btn-delete" data-id="{{ $item->id }}" href="javascript:void(0)"
                         class="btn icon btn-danger btn-sm"><i class="bi bi-x"></i></a>
+                    @else
+                    -
+                    @endif
                 </td>
             </tr>
             @endforeach

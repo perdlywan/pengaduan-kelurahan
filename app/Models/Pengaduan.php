@@ -9,9 +9,16 @@ class Pengaduan extends Model
 {
     use HasFactory;
 
+    protected $table = 'pengaduans';
+
     protected $fillable = [
         'user_id',
         'pesan',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -30,7 +30,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::prefix('pengaduan')->middleware('auth')->group(function () {
-    Route::get('/', [PengaduanController::class, 'index']);
+    Route::get('/', [PengaduanController::class, 'index'])->name('pengaduan.index');
     Route::post('/', [PengaduanController::class, 'store'])->name('pengaduan.store');
     Route::get('/{pengaduan}/edit', [PengaduanController::class, 'edit']);
     Route::put('/{pengaduan}', [PengaduanController::class, 'update'])->name('pengaduan.update');
