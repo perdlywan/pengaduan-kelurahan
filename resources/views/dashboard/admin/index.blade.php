@@ -1,8 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('js/extensions/simple-datatables/style.css') }}">
-<link rel="stylesheet" href="{{ asset('css/pages/simple-datatables.css') }}">
+<link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/sp-2.1.2/datatables.min.css" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -76,6 +75,12 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-<script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/sp-2.1.2/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table1').DataTable({
+            responsive: true,
+        });
+    });
+</script>
 @endsection

@@ -24,8 +24,7 @@
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app-dark.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('js/extensions/simple-datatables/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pages/simple-datatables.css') }}">
+    @yield('styles')
 </head>
 
 <body>
@@ -572,9 +571,6 @@
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('/js/main.js') }}"></script>
-
-    <script src="{{ asset('js/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-    <script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
 
     @if (session()->has('login-success'))
     <script>

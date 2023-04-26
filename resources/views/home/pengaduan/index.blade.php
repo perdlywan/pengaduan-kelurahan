@@ -1,5 +1,9 @@
 @extends('layouts.home')
 
+@section('styles')
+<link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/sp-2.1.2/datatables.min.css" rel="stylesheet" />
+@endsection
+
 @section('content')
 <div class="hero bg-white rounded-3 shadow" style="padding-bottom: 4rem;">
     <h1 style="color: #243142;">Daftar Pengaduan</h1>
@@ -145,6 +149,14 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/sp-2.1.2/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table1').DataTable({
+            responsive: true,
+        });
+    });
+</script>
 <script>
     $(document).ready(function () {
         var table = $('#table1');
@@ -195,17 +207,19 @@
                             <td>${ parsedTanggal }</td>
                             <td>${ response.data.pesan }</td>
                             <td><img src="{{ asset('images/pengaduan') }}/${ response.data.foto }" alt="" width="100"></td>
-                            <td><span class="badge bg-success">${ response.data.status }</span></td>
+                            <td><span class="badge bg-primary" style="font-weight: 400;">${ response.data.status }</span></td>
                             <td></td>
                             <td></td>
                             <td>
-                                <a href="" class="btn icon btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
-                                <form action="" method="POST" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button href="#" class="btn icon btn-danger btn-sm"><i class="bi bi-x"
-                                            onclick="return confirm('Are you sure you want to delete this item?');"></i></button>
-                                </form>
+                                @if ($item->status == 'proses')
+                                <a id="btn-edit" data-id="${ response.data.id }" href="javascript:void(0)"
+                                    class="btn icon btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit"><i
+                                        class="bi bi-pencil"></i></a>
+                                <a id="btn-delete" data-id="${ response.data.id }" href="javascript:void(0)"
+                                    class="btn icon btn-danger btn-sm"><i class="bi bi-x"></i></a>
+                                @else
+                                -
+                                @endif
                             </td>
                         </tr>
                     `

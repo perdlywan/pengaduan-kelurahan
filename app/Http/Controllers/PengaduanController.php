@@ -14,10 +14,10 @@ class PengaduanController extends Controller
         $data['title'] = 'Pengaduan';
 
         if (Auth::user()->level == 'masyarakat') {
-            $data['pengaduan'] = Pengaduan::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+            $data['pengaduan'] = Pengaduan::where('user_id', Auth::user()->id)->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
             return view('home.pengaduan.index', $data);
         } else {
-            $data['pengaduan'] = Pengaduan::with('user')->orderBy('created_at', 'desc')->get();
+            $data['pengaduan'] = Pengaduan::with('user')->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
             return view('dashboard.pengaduan.index', $data);
         }
     }

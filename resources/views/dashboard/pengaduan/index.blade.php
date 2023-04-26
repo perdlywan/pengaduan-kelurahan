@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('js/extensions/simple-datatables/style.css') }}">
+<link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/sp-2.1.2/datatables.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('css/pages/simple-datatables.css') }}">
 @endsection
 
@@ -30,12 +30,14 @@
     <section class="section">
         <div class="card">
             <div class="card-body">
+                <h3 class="card-title">Data Pengaduan Masyarakat</h3>
+                <p class="card-text">Daftar data pengaduan yang diajukan oleh masyarakat.</p>
                 @if (session()->has('success'))
                 <div class="alert alert-light-success color-success"><i class="bi bi-check-circle"></i>
                     {{ session('success') }}
                 </div>
                 @endif
-                <table class="table table-striped" id="table1">
+                <table class="table table-striped w-100" id="table1">
                     <thead>
                         <tr class="text-primary">
                             <th>Tanggal</th>
@@ -85,6 +87,15 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-<script src="{{ asset('js/pages/simple-datatables.js') }}"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/sp-2.1.2/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#table1').DataTable({
+            responsive: true,
+            order: [
+                [4, 'asc']
+            ]
+        });
+    });
+</script>
 @endsection
