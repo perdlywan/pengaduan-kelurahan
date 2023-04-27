@@ -211,15 +211,11 @@
                             <td></td>
                             <td></td>
                             <td>
-                                @if ($item->status == 'proses')
                                 <a id="btn-edit" data-id="${ response.data.id }" href="javascript:void(0)"
                                     class="btn icon btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit"><i
                                         class="bi bi-pencil"></i></a>
                                 <a id="btn-delete" data-id="${ response.data.id }" href="javascript:void(0)"
                                     class="btn icon btn-danger btn-sm"><i class="bi bi-x"></i></a>
-                                @else
-                                -
-                                @endif
                             </td>
                         </tr>
                     `
