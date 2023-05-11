@@ -1,5 +1,6 @@
 @extends('layouts.home')
 
+@section('title', 'Pengaduan Masyarakat Kelurahan Kabayan')
 @section('content')
 <div>
     <div class="mx-auto d-flex flex-lg-row flex-column hero bg-white shadow rounded-3">

@@ -13,12 +13,22 @@ class Pengaduan extends Model
 
     protected $fillable = [
         'user_id',
+        'modified_by',
         'pesan',
+        'foto',
         'status',
+        'rating'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function modified()
+    {
+        return $this->belongsTo(User::class, 'modified_by')->withDefault([
+            'username' => '',
+        ]);
     }
 }

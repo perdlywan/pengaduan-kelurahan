@@ -41,6 +41,7 @@
                     <thead>
                         <tr class="text-primary">
                             <th>Tanggal</th>
+                            <th>Ditanggapi Oleh</th>
                             <th>Dari</th>
                             <th>Pesan</th>
                             <th>Foto</th>
@@ -53,16 +54,55 @@
                     <tbody>
                         @foreach ($pengaduan as $item)
                         <tr>
-                            <td>{{ $item->created_at->format('Y-m-d') }}</td>
-                            <td><a href="">{{ $item->user->username }}</a></td>
+                            <td class="text-nowrap">{{ $item->created_at->format('Y-m-d') }}</td>
+                            <td><a href="#">{{ $item->modified->username }}</a></td>
+                            <td><a href="#">{{ $item->user->username }}</a></td>
                             <td>{{ $item->pesan }}</td>
                             <td><img src="{{ asset('images/pengaduan/' . $item->foto) }}" alt="" width="100"></td>
                             <td><span class="badge {{ ($item->status == 'proses') ? 'bg-primary' : 'bg-success' }}"
                                     style="font-weight: 400;">{{
                                     $item->status }}</span></td>
                             <td>{{ $item->tanggapan }}</td>
-                            <td>{{ $item->rating }}</td>
-                            <td>
+                            <td class="text-nowrap">
+                                @if ($item->rating == 1)
+                                <span hidden>1</span>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                @elseif ($item->rating == 2)
+                                <span hidden>2</span>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                @elseif ($item->rating == 3)
+                                <span hidden>3</span>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                @elseif ($item->rating == 4)
+                                <span hidden>4</span>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                @elseif ($item->rating == 5)
+                                <span hidden>5</span>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                @else
+                                @endif
+                            </td>
+                            <td class="text-nowrap">
                                 @if ($item->status == 'proses')
                                 <a href="/pengaduan/{{ $item->id }}/edit" class="btn icon btn-warning btn-sm"><i
                                         class="bi bi-pencil"></i></a>

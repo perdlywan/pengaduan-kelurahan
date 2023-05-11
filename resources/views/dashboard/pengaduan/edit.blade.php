@@ -119,6 +119,7 @@
                                 <div class="row">
                                     @method('put')
                                     @csrf
+                                    <input name="modified_by" value="{{ Auth::user()->id }}" hidden>
                                     <input name="status" value="selesai" hidden>
 
                                     <div class="col-12">

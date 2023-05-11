@@ -17,7 +17,7 @@ class PengaduanController extends Controller
             $data['pengaduan'] = Pengaduan::where('user_id', Auth::user()->id)->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
             return view('home.pengaduan.index', $data);
         } else {
-            $data['pengaduan'] = Pengaduan::with('user')->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
+            $data['pengaduan'] = Pengaduan::with('user', 'modified')->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
             return view('dashboard.pengaduan.index', $data);
         }
     }
@@ -83,19 +83,34 @@ class PengaduanController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::user()->level == 'masyarakat') {
-            $data = $request->validate([
-                'pesan' => 'required',
-            ]);
+            if ($request->rating == null) {
+                $data = $request->validate([
+                    'pesan' => 'required',
+                ]);
 
-            $pengaduan = Pengaduan::where('id', $id)->update($data);
+                $pengaduan = Pengaduan::where('id', $id)->update($data);
 
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Data berhasil diubah',
-                'data' => $data
-            ]);
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Data berhasil diubah',
+                    'data' => $data
+                ]);
+            } else {
+                $data = $request->validate([
+                    'rating' => 'nullable',
+                ]);
+
+                $pengaduan = Pengaduan::where('id', $id)->update($data);
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Data berhasil diubah',
+                    'data' => $data
+                ]);
+            }
         } else {
             $data = $request->validate([
+                'modified_by' => 'nullable',
                 'status' => 'required',
                 'tanggapan' => 'required',
             ]);
