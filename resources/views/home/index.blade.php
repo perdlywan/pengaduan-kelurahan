@@ -98,8 +98,8 @@
             <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
                     src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                 <div class="py-4">
-                    <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">2. Proses
-                        Verifikasi</h4>
+                    <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">2. Laporan Diproses
+                        </h4>
                     <p class="text-caption" style="color: #243142;">Tunggu sampai laporan Anda diveerifikasi
                     </p>
                 </div>

@@ -433,7 +433,7 @@
                                         <a class="nav-link main" style="color: #243142;" href="/">Home</a>
                                     </li>
                                     <li class="nav-item position-relative">
-                                        <a class="nav-link" href="#tata-cara">Tata Cara</a>
+                                        <a class="nav-link" href="/#tata-cara">Tata Cara</a>
                                     </li>
                                     @if (Auth::check())
                                     <li class="nav-item position-relative">
@@ -467,8 +467,8 @@
                             <a class="nav-link" style="{{ Request::is('/') ? 'color: #243142;' : '' }}"
                                 href="/">Home</a>
                         </li>
-                        <li class="nav-item position-relative {{ Request::is('#tata-cara') ? 'active' : '' }}">
-                            <a class="nav-link" style="{{ Request::is('#tata-cara') ? 'color: #243142;' : '' }}" href="
+                        <li class="nav-item position-relative {{ Request::is('/#tata-cara') ? 'active' : '' }}">
+                            <a class="nav-link" style="{{ Request::is('/#tata-cara') ? 'color: #243142;' : '' }}" href="
                                 /#tata-cara">Tata Cara</a>
                         </li>
                         @if (Auth::check())
@@ -477,7 +477,7 @@
                                 href="/pengaduan">Pengaduan</a>
                         </li>
                         <li class="nav-item position-relative">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link {{ Request::is('profile*') ? 'active' : ''  }}" style="{{ Request::is('profile*') ? 'color: #243142;' : '' }}" href="/profile">Profile</a>
                         </li>
                         @endif
                     </ul>

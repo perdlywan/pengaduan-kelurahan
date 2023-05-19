@@ -8,7 +8,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\MasyarakatController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaffController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,11 @@ Route::prefix('pengaduan')->middleware('auth')->group(function () {
     Route::get('/{pengaduan}/edit', [PengaduanController::class, 'edit']);
     Route::put('/{pengaduan}', [PengaduanController::class, 'update'])->name('pengaduan.update');
     Route::delete('/{pengaduan}', [PengaduanController::class, 'destroy']);
+});
+
+Route::prefix('profile')->middleware('auth')->group(function () {
+    Route::get('/', [ProfileController::class, 'index']);
+    Route::put('/{profile}', [ProfileController::class, 'update']);
 });
 
 Route::prefix('masyarakat')->middleware('auth')->group(function () {
