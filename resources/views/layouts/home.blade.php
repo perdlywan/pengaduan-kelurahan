@@ -440,7 +440,7 @@
                                         <a class="nav-link" href="/pengaduan">Pengaduan</a>
                                     </li>
                                     <li class="nav-item position-relative">
-                                        <a class="nav-link" href="/profile">Profile</a>
+                                        <a class="nav-link" href="/profile/{{ Auth::user()->username }}">Profile</a>
                                     </li>
                                     @endif
                                 </ul>
@@ -476,8 +476,9 @@
                             <a class="nav-link" style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
                                 href="/pengaduan">Pengaduan</a>
                         </li>
-                        <li class="nav-item position-relative">
-                            <a class="nav-link" href="#">Profile</a>
+                        <li class="nav-item {{ Request::is('profile*') ? 'active' : ''  }} position-relative">
+                            <a class="nav-link" style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
+                                href="/profile/{{ Auth::user()->username }}">Profile</a>
                         </li>
                         @endif
                     </ul>

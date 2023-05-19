@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\MasyarakatController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaffController;
 
 /*
@@ -62,4 +63,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/{admin:username}/edit', [AdminController::class, 'edit']);
     Route::put('/{admin}', [AdminController::class, 'update']);
     Route::delete('/{admin}', [AdminController::class, 'destroy']);
+});
+
+Route::prefix('profile')->middleware('auth')->group(function () {
+    Route::get('/{user:username}', [ProfileController::class, 'show']);
+    Route::get('/{user:username}/edit', [ProfileController::class, 'edit']);
+    Route::put('/{user:username}', [ProfileController::class, 'update']);
 });

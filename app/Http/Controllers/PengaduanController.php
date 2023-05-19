@@ -54,11 +54,7 @@ class PengaduanController extends Controller
         $pengaduan->status = 'proses';
         $pengaduan->save();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data berhasil ditambahkan',
-            'data' => $pengaduan
-        ]);
+        return redirect('/pengaduan')->with('success', 'Pengaduan berhasil dikirim');
     }
 
     public function edit($id)
@@ -85,16 +81,25 @@ class PengaduanController extends Controller
         if (Auth::user()->level == 'masyarakat') {
             if ($request->rating == null) {
                 $data = $request->validate([
+                    'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                     'pesan' => 'required',
                 ]);
 
-                $pengaduan = Pengaduan::where('id', $id)->update($data);
+                if ($request->hasFile('foto')) {
+                    $file = $request->file('foto');
+                    $nama_file = time() . "_" . $file->getClientOriginalName();
+                    $tujuan_upload = 'images/pengaduan';
+                    $file->move($tujuan_upload, $nama_file);
+                } else {
+                    $nama_file = null;
+                }
 
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'Data berhasil diubah',
-                    'data' => $data
+                $pengaduan = Pengaduan::where('id', $id)->update([
+                    'foto' => $nama_file,
+                    'pesan' => $request->pesan,
                 ]);
+
+                return redirect()->route('pengaduan.index')->with('success', 'Data berhasil diubah');
             } else {
                 $data = $request->validate([
                     'rating' => 'nullable',
@@ -102,11 +107,7 @@ class PengaduanController extends Controller
 
                 $pengaduan = Pengaduan::where('id', $id)->update($data);
 
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'Data berhasil diubah',
-                    'data' => $data
-                ]);
+                return redirect()->route('pengaduan.index')->with('success', 'Berhasil memberikan rating');
             }
         } else {
             $data = $request->validate([
@@ -125,9 +126,6 @@ class PengaduanController extends Controller
     {
         Pengaduan::where('id', $id)->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data berhasil dihapus',
-        ]);
+        return redirect('/pengaduan')->with('success', 'Data berhasil dihapus');
     }
 }

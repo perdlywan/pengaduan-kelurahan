@@ -84,8 +84,8 @@
 <div id="tata-cara" class="container py-4 py-xl-5">
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-4" style="margin-top: 24px;">
         <div class="col">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                    src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
+                    src="{{ asset('images/tulis laporan.png') }}">
                 <div class="py-4">
                     <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">1. Tulis
                         Laporan</h4>
@@ -95,8 +95,8 @@
             </div>
         </div>
         <div class="col">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                    src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
+                    src="{{ asset('images/proses verifikasi.png') }}">
                 <div class="py-4">
                     <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">2. Proses
                         Verifikasi</h4>
@@ -106,8 +106,8 @@
             </div>
         </div>
         <div class="col">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                    src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
+                    src="{{ asset('images/tindak lanjut.png') }}">
                 <div class="py-4">
                     <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">3. Tindak
                         Lanjut</h4>
@@ -117,8 +117,8 @@
             </div>
         </div>
         <div class="col">
-            <div><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;"
-                    src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+            <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
+                    src="{{ asset('images/selesai.png') }}">
                 <div class="py-4">
                     <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">4.
                         Selesai</h4>
