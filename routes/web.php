@@ -11,6 +11,7 @@ use App\Http\Controllers\MasyarakatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaffController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,11 @@ Route::prefix('pengaduan')->middleware('auth')->group(function () {
     Route::get('/{pengaduan}/edit', [PengaduanController::class, 'edit']);
     Route::put('/{pengaduan}', [PengaduanController::class, 'update'])->name('pengaduan.update');
     Route::delete('/{pengaduan}', [PengaduanController::class, 'destroy']);
+});
+
+Route::prefix('profile')->middleware('auth')->group(function () {
+    Route::get('/', [ProfileController::class, 'index']);
+    Route::put('/{profile}', [ProfileController::class, 'update']);
 });
 
 Route::prefix('masyarakat')->middleware('auth')->group(function () {
@@ -65,8 +71,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('/{admin}', [AdminController::class, 'destroy']);
 });
 
-Route::prefix('profile')->middleware('auth')->group(function () {
-    Route::get('/{user:username}', [ProfileController::class, 'show']);
-    Route::get('/{user:username}/edit', [ProfileController::class, 'edit']);
-    Route::put('/{user:username}', [ProfileController::class, 'update']);
-});
+// Route::prefix('profile')->middleware('auth')->group(function () {
+//     Route::get('/{user:username}', [ProfileController::class, 'show']);
+//     Route::get('/{user:username}/edit', [ProfileController::class, 'edit']);
+//     Route::put('/{user:username}', [ProfileController::class, 'update']);
+// });

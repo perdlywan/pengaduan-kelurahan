@@ -429,18 +429,27 @@
                             </div>
                             <div class="modal-body" style="padding: 2rem; padding-top: 0; padding-bottom: 0">
                                 <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">
-                                    <li class="nav-item active position-relative">
-                                        <a class="nav-link main" style="color: #243142;" href="/">Home</a>
+                                    <li class="nav-item {{ Request::is('/') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('/') ? 'main' : '' }}"
+                                            style="{{ Request::is('/') ? 'color: #243142;' : '' }}" href="/">Home</a>
                                     </li>
-                                    <li class="nav-item position-relative">
-                                        <a class="nav-link" href="#tata-cara">Tata Cara</a>
+                                    <li
+                                        class="nav-item {{ Request::is('/#tata-cara') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('/#tata-cara') ? 'main' : '' }}"
+                                            href="/#tata-cara">Tata Cara</a>
                                     </li>
                                     @if (Auth::check())
-                                    <li class="nav-item position-relative">
-                                        <a class="nav-link" href="/pengaduan">Pengaduan</a>
+                                    <li
+                                        class="nav-item {{ Request::is('pengaduan*') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('pengaduan*') ? 'main' : '' }}"
+                                            style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
+                                            href="/pengaduan">Pengaduan</a>
                                     </li>
-                                    <li class="nav-item position-relative">
-                                        <a class="nav-link" href="/profile/{{ Auth::user()->username }}">Profile</a>
+                                    <li
+                                        class="nav-item {{ Request::is('profile*') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('profile*') ? 'main' : '' }}"
+                                            style="{{ Request::is('profile*') ? 'color: #243142;' : '' }}"
+                                            href="/profile">Profile</a>
                                     </li>
                                     @endif
                                 </ul>
@@ -467,8 +476,8 @@
                             <a class="nav-link" style="{{ Request::is('/') ? 'color: #243142;' : '' }}"
                                 href="/">Home</a>
                         </li>
-                        <li class="nav-item position-relative {{ Request::is('#tata-cara') ? 'active' : '' }}">
-                            <a class="nav-link" style="{{ Request::is('#tata-cara') ? 'color: #243142;' : '' }}" href="
+                        <li class="nav-item position-relative {{ Request::is('/#tata-cara') ? 'active' : '' }}">
+                            <a class="nav-link" style="{{ Request::is('/#tata-cara') ? 'color: #243142;' : '' }}" href="
                                 /#tata-cara">Tata Cara</a>
                         </li>
                         @if (Auth::check())
@@ -476,9 +485,10 @@
                             <a class="nav-link" style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
                                 href="/pengaduan">Pengaduan</a>
                         </li>
-                        <li class="nav-item {{ Request::is('profile*') ? 'active' : ''  }} position-relative">
-                            <a class="nav-link" style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
-                                href="/profile/{{ Auth::user()->username }}">Profile</a>
+                        <li class="nav-item position-relative">
+                            <a class="nav-link {{ Request::is('profile*') ? 'active' : ''  }}"
+                                style="{{ Request::is('profile*') ? 'color: #243142;' : '' }}"
+                                href="/profile">Profile</a>
                         </li>
                         @endif
                     </ul>

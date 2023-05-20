@@ -2,7 +2,7 @@
 
 @section('title', 'Pengaduan Masyarakat Kelurahan Kabayan')
 @section('content')
-<div>
+<div class="m-2 m-sm-4 m-md-0">
     <div class="mx-auto d-flex flex-lg-row flex-column hero bg-white shadow rounded-3">
         <!-- Left Column -->
         <div
@@ -34,7 +34,9 @@
                                         <i data-feather="x"></i>
                                     </button>
                                 </div>
-                                <form id="form-pengaduan" data-action="{{ route('pengaduan.store') }}" method="POST">
+                                <form id="form-pengaduan" class="overflow-auto" action="{{ route('pengaduan.store') }}"
+                                    method="POST" enctype="multipart/form-data">
+                                    @method('post')
                                     @csrf
                                     <div class="modal-body">
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="id" />
@@ -43,6 +45,9 @@
                                         <div class="mb-3">
                                             <label class="form-label">Foto</label>
                                             <input class="form-control" type="file" id="foto" name="foto" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
                                         </div>
                                         <div>
                                             <label class="form-label">Pesan<sup class="text-danger">*</sup></label>
@@ -98,9 +103,9 @@
             <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
                     src="{{ asset('images/proses verifikasi.png') }}">
                 <div class="py-4">
-                    <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">2. Proses
-                        Verifikasi</h4>
-                    <p class="text-caption" style="color: #243142;">Tunggu sampai laporan Anda diveerifikasi
+                    <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">2. Laporan Diproses
+                    </h4>
+                    <p class="text-caption" style="color: #243142;">Tunggu sampai laporan Anda diverifikasi
                     </p>
                 </div>
             </div>
@@ -146,41 +151,15 @@
         })
     })
 
-    $('#form-pengaduan').on('submit', function (e) {
-        e.preventDefault()
-
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: $(this).attr('data-action'),
-            type: 'POST',
-            data: new FormData(this),
-            dataType: 'JSON',
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (response) {
-                $('#store').attr('data-bs-dismiss', 'modal')
-                $('#store').click()
-                $('#store').removeAttr('data-bs-dismiss')
-
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil',
-                    text: 'Pengaduan berhasil dikirim, silahkan tunggu tanggapan dari admin',
-                    showCancelButton: false,
-                    confirmButtonText: 'Pergi ke Pengaduan',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "/pengaduan"
-                    }
-                })
-            },
-
-            error: function (response) {
+    $('#foto').change(function(){
+        const file = this.files[0]
+        if (file){
+            let reader = new FileReader()
+            reader.onload = function(event){
+                $('#preview').attr('src', event.target.result)
             }
-        })
+            reader.readAsDataURL(file)
+        }
     })
 </script>
 @endsection

@@ -66,6 +66,7 @@
       </div>
 
       <div class="row">
+        @can('admin')
         <div class="col-6 col-lg-3 col-md-6">
           <div class="card">
             <div class="card-body px-4 py-4-5">
@@ -85,6 +86,7 @@
             </div>
           </div>
         </div>
+        @endcan
         <div class="col-6 col-lg-3 col-md-6">
           <div class="card">
             <div class="card-body px-4 py-4-5">
@@ -102,6 +104,7 @@
             </div>
           </div>
         </div>
+        @can('admin')
         <div class="col-6 col-lg-3 col-md-6">
           <div class="card">
             <div class="card-body px-4 py-4-5">
@@ -119,6 +122,8 @@
             </div>
           </div>
         </div>
+        @endcan
+        @can('admin')
         <div class="col-6 col-lg-3 col-md-6">
           <div class="card">
             <div class="card-body px-4 py-4-5">
@@ -136,6 +141,7 @@
             </div>
           </div>
         </div>
+        @endcan
       </div>
 
     </div>

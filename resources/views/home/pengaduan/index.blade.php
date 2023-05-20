@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="hero bg-white rounded-3 shadow" style="padding-bottom: 4rem;">
+<div class="hero bg-white rounded-3 shadow m-2 m-sm-4 m-md-0" style="padding-bottom: 4rem;">
     <h1 style="color: #243142;">Daftar Pengaduan</h1>
 
 
@@ -216,11 +216,13 @@
 
                                         <div class="mb-3">
                                             <label class="form-label">Foto</label>
-                                            <input class="form-control" type="file" id="foto-edit" name="foto" />
+                                            <input class="form-control" type="file" id="foto-edit{{ $item->id }}"
+                                                name="foto"
+                                                onchange="previewImage(this, 'preview-edit{{ $item->id }}')" />
                                         </div>
                                         <div class="mb-3">
                                             <img src="{{ $item->foto ? asset('images/pengaduan/' . $item->foto) : 'https://placehold.it/80x80' }}"
-                                                id="preview-edit" class="img-thumbnail">
+                                                id="preview-edit{{ $item->id }}" class="img-thumbnail">
                                         </div>
                                         <div>
                                             <label class="form-label">Pesan<sup class="text-danger">*</sup></label>
@@ -283,16 +285,17 @@
             }
         });
 
-        function preview(id) {
-            const file = $('#foto-edit' + id)[0].files[0];
+        $('#foto-edit').change(function(){
+            const file = this.files[0];
             if (file){
                 let reader = new FileReader();
                 reader.onload = function(event){
-                    $('#preview-edit' + id).attr('src', event.target.result);
+                    $('#preview-edit').attr('src', event.target.result);
                 }
                 reader.readAsDataURL(file);
             }
-        }
+        });
+
         $('body').on('click', '#btn-rating', function () {
             let dataId = $(this).attr('data-id')
 
@@ -326,5 +329,21 @@
             })
         })
     })
+
+    function previewImage(fileInput, imagePreviewId) {
+        const imagePreview = document.getElementById(imagePreviewId);
+        
+        const file = fileInput.files[0];
+        
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                imagePreview.setAttribute('src', this.result);
+            });
+
+            reader.readAsDataURL(file);
+        }
+    }
 </script>
 @endsection
