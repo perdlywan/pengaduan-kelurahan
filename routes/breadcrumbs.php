@@ -73,3 +73,20 @@ Breadcrumbs::for('staff.edit', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('staff');
     $trail->push('Edit', '/staff/' . $id . '/edit');
 });
+
+// Pengaduan
+Breadcrumbs::for('home.pengaduan', function (BreadcrumbTrail $trail) {
+    $trail->push('Pengaduan', '/pengaduan');
+});
+
+// Pengaduan > Buat Pengaduan
+Breadcrumbs::for('home.pengaduan.add', function (BreadcrumbTrail $trail) {
+    $trail->parent('home.pengaduan');
+    $trail->push('Buat Pengaduan', '/pengaduan/add');
+});
+
+// Pengaduan > Ubah laporan Pengaduan
+Breadcrumbs::for('home.pengaduan.edit', function (BreadcrumbTrail $trail, $id) {
+    $trail->parent('home.pengaduan');
+    $trail->push('Ubah Laporan Pengaduan', '/pengaduan/' . $id . '/edit');
+});

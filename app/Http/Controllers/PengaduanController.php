@@ -22,21 +22,22 @@ class PengaduanController extends Controller
         }
     }
 
+    public function add()
+    {
+        $this->authorize('masyarakat');
+        $data['title'] = 'Buat Pengaduan';
+        return view('home.pengaduan.add', $data);
+    }
+
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->authorize('masyarakat');
+        $validator = $request->validate([
             'user_id' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'pesan' => 'required',
             'status' => 'required',
         ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $validator->errors()->first(),
-            ]);
-        }
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
@@ -57,20 +58,32 @@ class PengaduanController extends Controller
         return redirect('/pengaduan')->with('success', 'Pengaduan berhasil dikirim');
     }
 
+    public function rating($id)
+    {
+        if (Auth::user()->level == 'masyarakat') {
+            $data = Pengaduan::where('id', $id)->where('user_id', Auth::user()->id)->first();
+
+            return response()->json([
+                'success' => true,
+                'pengaduan' => $data
+            ]);
+        }
+    }
+
     public function edit($id)
     {
         if (Auth::user()->level == 'masyarakat') {
-            $pengaduan = Pengaduan::where('id', $id)->where('user_id', Auth::user()->id)->get();
+            $data = Pengaduan::where('id', $id)->where('user_id', Auth::user()->id)->first();
 
-            return response()->json([
-                'status' => 'success',
-                'data' => $pengaduan
+            return view('home.pengaduan.edit', [
+                'pengaduan' => $data,
+                'title' => 'Ubah Data Pengaduan'
             ]);
         } else {
-            $pengaduan = Pengaduan::where('id', $id)->with('user')->get();
+            $pengaduan = Pengaduan::where('id', $id)->with('user')->first();
 
             return view('dashboard.pengaduan.edit', [
-                'pengaduan' => $pengaduan[0],
+                'pengaduan' => $pengaduan,
                 'title' => "Ubah Data Pengaduan"
             ]);
         }
@@ -90,16 +103,18 @@ class PengaduanController extends Controller
                     $nama_file = time() . "_" . $file->getClientOriginalName();
                     $tujuan_upload = 'images/pengaduan';
                     $file->move($tujuan_upload, $nama_file);
+
+                    $pengaduan = Pengaduan::where('id', $id)->update([
+                        'foto' => $nama_file,
+                        'pesan' => $request->pesan,
+                    ]);
                 } else {
-                    $nama_file = null;
+                    $pengaduan = Pengaduan::where('id', $id)->update([
+                        'pesan' => $request->pesan,
+                    ]);
                 }
 
-                $pengaduan = Pengaduan::where('id', $id)->update([
-                    'foto' => $nama_file,
-                    'pesan' => $request->pesan,
-                ]);
-
-                return redirect()->route('pengaduan.index')->with('success', 'Data berhasil diubah');
+                return redirect('/pengaduan')->with('success', 'Laporan pengaduan berhasil diubah');
             } else {
                 $data = $request->validate([
                     'rating' => 'nullable',
@@ -118,7 +133,7 @@ class PengaduanController extends Controller
 
             $pengaduan = Pengaduan::where('id', $id)->update($data);
 
-            return redirect('/pengaduan')->with('success', 'Data berhasil diubah');
+            return redirect('/pengaduan')->with('success', 'Laporan pengaduan berhasil ditanggapi');
         }
     }
 

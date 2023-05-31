@@ -40,7 +40,7 @@
                                         <div class="form-group">
                                             <label for="nik">NIK</label>
                                             <input type="number" id="nik"
-                                                class="form-control  @error('nik') is-invalid @enderror"
+                                                class="form-control @error('nik') is-invalid @enderror"
                                                 placeholder="NIK" name="nik" value="{{ old('nik') }}" required
                                                 autofocus>
                                             @error('nik')
