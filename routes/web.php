@@ -34,9 +34,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::prefix('pengaduan')->middleware('auth')->group(function () {
     Route::get('/', [PengaduanController::class, 'index'])->name('pengaduan.index');
-    Route::post('/', [PengaduanController::class, 'store'])->name('pengaduan.store');
+    Route::get('/add', [PengaduanController::class, 'add']);
+    Route::post('/', [PengaduanController::class, 'store']);
+    Route::get('/rating/{pengaduan}', [PengaduanController::class, 'rating']);
     Route::get('/{pengaduan}/edit', [PengaduanController::class, 'edit']);
-    Route::put('/{pengaduan}', [PengaduanController::class, 'update'])->name('pengaduan.update');
+    Route::put('/{pengaduan}', [PengaduanController::class, 'update']);
     Route::delete('/{pengaduan}', [PengaduanController::class, 'destroy']);
 });
 
@@ -71,9 +73,3 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('/{admin}', [AdminController::class, 'update']);
     Route::delete('/{admin}', [AdminController::class, 'destroy']);
 });
-
-// Route::prefix('profile')->middleware('auth')->group(function () {
-//     Route::get('/{user:username}', [ProfileController::class, 'show']);
-//     Route::get('/{user:username}/edit', [ProfileController::class, 'edit']);
-//     Route::put('/{user:username}', [ProfileController::class, 'update']);
-// });

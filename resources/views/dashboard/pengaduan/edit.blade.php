@@ -95,7 +95,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-label">Foto</label>
-                                        <div class="rounded py-2 text-center"
+                                        <div class="form-control rounded py-2 text-center"
                                             style="background: #E9ECEF; border: 1px solid #dce7f1;">
                                             <img src="{{ asset('images/pengaduan/' . $pengaduan->foto) }}" alt="foto"
                                                 height="75" class="rounded">
@@ -125,8 +125,13 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label class="form-label">Tanggapan</label>
-                                            <textarea class="form-control @error('pesan') is-invalid @enderror"
+                                            <textarea class="form-control @error('tanggapan') is-invalid @enderror"
                                                 name="tanggapan" id="tanggapan" cols="30" rows="5"></textarea>
+                                            @error('tanggapan')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">

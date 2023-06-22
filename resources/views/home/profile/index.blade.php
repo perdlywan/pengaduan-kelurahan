@@ -9,9 +9,6 @@
 @section('content')
 <div class="hero bg-white rounded-3 shadow m-2 m-sm-4 m-md-0" style="padding-bottom: 4rem;">
     <h1 style="color: #243142;">Profile Saya</h1>
-    <div class="text-center">
-        <i class="bi bi-person-circle" style="font-size: 10rem; color: #4E91F9;"></i>
-    </div>
     <form action="/profile/{{ $user->id }}" method="POST">
         <div class="row">
             @method('put')

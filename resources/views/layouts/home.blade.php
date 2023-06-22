@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -360,7 +359,7 @@
                 }
 
                 .header-3-3 .hero {
-                    padding: 4rem 6rem 0rem;
+                    padding: 4rem 6rem 4rem 6rem;
                 }
 
                 .header-3-3 .left-column {
@@ -443,10 +442,16 @@
                                     </li>
                                     @if (Auth::check())
                                     <li
-                                        class="nav-item {{ Request::is('pengaduan*') ? 'active' : '' }} position-relative">
-                                        <a class="nav-link {{ Request::is('pengaduan*') ? 'main' : '' }}"
-                                            style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
+                                        class="nav-item {{ Request::is('pengaduan') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('pengaduan') ? 'main' : '' }}"
+                                            style="{{ Request::is('pengaduan') ? 'color: #243142;' : '' }}"
                                             href="/pengaduan">Pengaduan</a>
+                                    </li>
+                                    <li
+                                        class="nav-item {{ Request::is('pengaduan/add') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('pengaduan/add') ? 'main' : '' }}"
+                                            style="{{ Request::is('pengaduan/add') ? 'color: #243142;' : '' }}"
+                                            href="/pengaduan/add">Buat Pengaduan</a>
                                     </li>
                                     <li
                                         class="nav-item {{ Request::is('profile*') ? 'active' : '' }} position-relative">
@@ -484,9 +489,13 @@
                                 /tata-cara">Tata Cara</a>
                         </li>
                         @if (Auth::check())
-                        <li class="nav-item {{ Request::is('pengaduan*') ? 'active' : ''  }} position-relative">
-                            <a class="nav-link" style="{{ Request::is('pengaduan*') ? 'color: #243142;' : '' }}"
+                        <li class="nav-item {{ Request::is('pengaduan') ? 'active' : ''  }} position-relative">
+                            <a class="nav-link" style="{{ Request::is('pengaduan') ? 'color: #243142;' : '' }}"
                                 href="/pengaduan">Pengaduan</a>
+                        </li>
+                        <li class="nav-item {{ Request::is('pengaduan/add') ? 'active' : ''  }} position-relative">
+                            <a class="nav-link" style="{{ Request::is('pengaduan/add') ? 'color: #243142;' : '' }}"
+                                href="/pengaduan/add">Buat Pengaduan</a>
                         </li>
                         <li class="nav-item position-relative">
                             <a class="nav-link {{ Request::is('profile*') ? 'active' : ''  }}"
@@ -577,7 +586,6 @@
     <script src="{{ asset('/js/app.js') }}"></script>
 
     <script src="{{ asset('/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('/vendors/tinymce/tinymce.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
