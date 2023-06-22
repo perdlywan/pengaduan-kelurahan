@@ -10,4 +10,9 @@ class HomeController extends Controller
     {
         return view('home.index');
     }
+
+    public function tataCara()
+    {
+        return view('home.tata-cara');
+    }
 }

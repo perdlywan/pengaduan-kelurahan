@@ -24,6 +24,7 @@ use App\Http\Controllers\StaffController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/tata-cara', [HomeController::class, 'tataCara']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);

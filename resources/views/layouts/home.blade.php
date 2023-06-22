@@ -402,7 +402,10 @@
                     width: 100%;
                 }
             }
-        </style>
+            </style>
+
+            @yield('styles')
+        
         <div class="header-3-3 container-xxl mx-auto p-0 position-relative" style="font-family: 'Poppins', sans-serif">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a href="/" class="text-decoration-none">
@@ -434,9 +437,9 @@
                                             style="{{ Request::is('/') ? 'color: #243142;' : '' }}" href="/">Home</a>
                                     </li>
                                     <li
-                                        class="nav-item {{ Request::is('/#tata-cara') ? 'active' : '' }} position-relative">
-                                        <a class="nav-link {{ Request::is('/#tata-cara') ? 'main' : '' }}"
-                                            href="/#tata-cara">Tata Cara</a>
+                                        class="nav-item {{ Request::is('/tata-cara') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('/tata-cara') ? 'main' : '' }}"
+                                            href="/tata-cara">Tata Cara</a>
                                     </li>
                                     @if (Auth::check())
                                     <li
@@ -476,9 +479,9 @@
                             <a class="nav-link" style="{{ Request::is('/') ? 'color: #243142;' : '' }}"
                                 href="/">Home</a>
                         </li>
-                        <li class="nav-item position-relative {{ Request::is('/#tata-cara') ? 'active' : '' }}">
-                            <a class="nav-link" style="{{ Request::is('/#tata-cara') ? 'color: #243142;' : '' }}" href="
-                                /#tata-cara">Tata Cara</a>
+                        <li class="nav-item position-relative {{ Request::is('/tata-cara') ? 'active' : '' }}">
+                            <a class="nav-link" style="{{ Request::is('/tata-cara') ? 'color: #243142;' : '' }}" href="
+                                /tata-cara">Tata Cara</a>
                         </li>
                         @if (Auth::check())
                         <li class="nav-item {{ Request::is('pengaduan*') ? 'active' : ''  }} position-relative">
