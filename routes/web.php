@@ -9,8 +9,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\MasyarakatController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StaffController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -54,15 +52,6 @@ Route::prefix('masyarakat')->middleware('auth')->group(function () {
     Route::get('/{masyarakat:username}/edit', [MasyarakatController::class, 'edit']);
     Route::put('/{masyarakat}', [MasyarakatController::class, 'update']);
     Route::delete('/{masyarakat}', [MasyarakatController::class, 'destroy']);
-});
-
-Route::prefix('staff')->middleware('auth')->group(function () {
-    Route::get('/', [StaffController::class, 'index']);
-    Route::get('/add', [StaffController::class, 'add']);
-    Route::post('/', [StaffController::class, 'store']);
-    Route::get('/{staff:username}/edit', [StaffController::class, 'edit']);
-    Route::put('/{staff}', [StaffController::class, 'update']);
-    Route::delete('/{staff}', [StaffController::class, 'destroy']);
 });
 
 Route::prefix('admin')->middleware('auth')->group(function () {

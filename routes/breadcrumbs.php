@@ -14,6 +14,12 @@ Breadcrumbs::for('pengaduan', function (BreadcrumbTrail $trail) {
     $trail->push('Pengaduan', '/pengaduan');
 });
 
+// Dashboard > Pengaduan > Tambah
+Breadcrumbs::for('pengaduan.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('pengaduan');
+    $trail->push('Tambah', '/pengaduan/create');
+});
+
 // Dashboard > Pengaduan > Edit
 Breadcrumbs::for('pengaduan.edit', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('pengaduan');
@@ -54,39 +60,4 @@ Breadcrumbs::for('admin.create', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('admin.edit', function (BreadcrumbTrail $trail, $id) {
     $trail->parent('admin');
     $trail->push('Edit', '/admin/' . $id . '/edit');
-});
-
-// Dashboard > Staff
-Breadcrumbs::for('staff', function (BreadcrumbTrail $trail) {
-    $trail->parent('dashboard');
-    $trail->push('Staff', '/staff');
-});
-
-// Dashboard > Staff > Tambah
-Breadcrumbs::for('staff.create', function (BreadcrumbTrail $trail) {
-    $trail->parent('staff');
-    $trail->push('Tambah', '/staff/create');
-});
-
-// Dashboard > Staff > Edit
-Breadcrumbs::for('staff.edit', function (BreadcrumbTrail $trail, $id) {
-    $trail->parent('staff');
-    $trail->push('Edit', '/staff/' . $id . '/edit');
-});
-
-// Pengaduan
-Breadcrumbs::for('home.pengaduan', function (BreadcrumbTrail $trail) {
-    $trail->push('Pengaduan', '/pengaduan');
-});
-
-// Pengaduan > Buat Pengaduan
-Breadcrumbs::for('home.pengaduan.add', function (BreadcrumbTrail $trail) {
-    $trail->parent('home.pengaduan');
-    $trail->push('Buat Pengaduan', '/pengaduan/add');
-});
-
-// Pengaduan > Ubah laporan Pengaduan
-Breadcrumbs::for('home.pengaduan.edit', function (BreadcrumbTrail $trail, $id) {
-    $trail->parent('home.pengaduan');
-    $trail->push('Ubah Laporan Pengaduan', '/pengaduan/' . $id . '/edit');
 });

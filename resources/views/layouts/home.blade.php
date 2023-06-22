@@ -27,7 +27,8 @@
 </head>
 
 <body>
-    <section class="h-100 w-100" style="
+    <section class="h-100 w-100"
+        style="
 				box-sizing: border-box;
 				position: relative;
 				background-color:#f2f7ff;
@@ -401,14 +402,15 @@
                     width: 100%;
                 }
             }
-            </style>
+        </style>
 
-            @yield('styles')
-        
+        @yield('styles')
+
         <div class="header-3-3 container-xxl mx-auto p-0 position-relative" style="font-family: 'Poppins', sans-serif">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a href="/" class="text-decoration-none">
-                    <img style="margin-right: 0.75rem" src="{{ asset('/images/logo/logo.png') }}" alt="" height="30" />
+                    <img style="margin-right: 0.75rem" src="{{ asset('/images/logo/logo.png') }}" alt=""
+                        height="30" />
                     <strong style="color: #243142;">Kelurahan Kabayan</strong>
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal"
@@ -422,8 +424,8 @@
                         <div class="modal-content bg-white border-0">
                             <div class="modal-header border-0" style="padding: 2rem; padding-bottom: 0">
                                 <a class="modal-title text-decoration-none" id="targetModalLabel">
-                                    <img style="margin-right: 0.75rem" src="{{ asset('/images/logo/logo.png') }}" alt=""
-                                        height="30" />
+                                    <img style="margin-right: 0.75rem" src="{{ asset('/images/logo/logo.png') }}"
+                                        alt="" height="30" />
                                     <strong style="color: #243142;">Kelurahan Kabayan</strong>
                                 </a>
                                 <button type="button" class="close btn-close text-white" data-bs-dismiss="modal"
@@ -433,45 +435,22 @@
                                 <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">
                                     <li class="nav-item {{ Request::is('/') ? 'active' : '' }} position-relative">
                                         <a class="nav-link {{ Request::is('/') ? 'main' : '' }}"
-                                            style="{{ Request::is('/') ? 'color: #243142;' : '' }}" href="/">Home</a>
+                                            style="{{ Request::is('/') ? 'color: #243142;' : '' }}"
+                                            href="/">Home</a>
                                     </li>
                                     <li
-                                        class="nav-item {{ Request::is('/tata-cara') ? 'active' : '' }} position-relative">
-                                        <a class="nav-link {{ Request::is('/tata-cara') ? 'main' : '' }}"
+                                        class="nav-item {{ Request::is('tata-cara') ? 'active' : '' }} position-relative">
+                                        <a class="nav-link {{ Request::is('tata-cara') ? 'main' : '' }}"
                                             href="/tata-cara">Tata Cara</a>
                                     </li>
-                                    @if (Auth::check())
-                                    <li
-                                        class="nav-item {{ Request::is('pengaduan') ? 'active' : '' }} position-relative">
-                                        <a class="nav-link {{ Request::is('pengaduan') ? 'main' : '' }}"
-                                            style="{{ Request::is('pengaduan') ? 'color: #243142;' : '' }}"
-                                            href="/pengaduan">Pengaduan</a>
-                                    </li>
-                                    <li
-                                        class="nav-item {{ Request::is('pengaduan/add') ? 'active' : '' }} position-relative">
-                                        <a class="nav-link {{ Request::is('pengaduan/add') ? 'main' : '' }}"
-                                            style="{{ Request::is('pengaduan/add') ? 'color: #243142;' : '' }}"
-                                            href="/pengaduan/add">Buat Pengaduan</a>
-                                    </li>
-                                    <li
-                                        class="nav-item {{ Request::is('profile*') ? 'active' : '' }} position-relative">
-                                        <a class="nav-link {{ Request::is('profile*') ? 'main' : '' }}"
-                                            style="{{ Request::is('profile*') ? 'color: #243142;' : '' }}"
-                                            href="/profile">Profile</a>
-                                    </li>
-                                    @endif
                                 </ul>
                             </div>
                             <div class="modal-footer border-0" style="padding: 2rem; padding-top: 0.75rem">
                                 @if (Auth::check())
-                                <form action="/logout" method="POST">
-                                    @csrf
-                                    <button href="/logout"
-                                        class="btn btn-fill text-white bg-danger border-danger btn-danger">Logout</button>
-                                </form>
+                                    <a href="/dashboard" class="btn btn-fill text-white">Dashboard</a>
                                 @else
-                                <a href="/login" class="btn btn-default btn-no-fill">Log In</a>
-                                <a href="/register" class="btn btn-fill text-white">Register</a>
+                                    <a href="/login" class="btn btn-default btn-no-fill">Log In</a>
+                                    <a href="/register" class="btn btn-fill text-white">Register</a>
                                 @endif
                             </div>
                         </div>
@@ -484,41 +463,24 @@
                             <a class="nav-link" style="{{ Request::is('/') ? 'color: #243142;' : '' }}"
                                 href="/">Home</a>
                         </li>
-                        <li class="nav-item position-relative {{ Request::is('/tata-cara') ? 'active' : '' }}">
-                            <a class="nav-link" style="{{ Request::is('/tata-cara') ? 'color: #243142;' : '' }}" href="
+                        <li class="nav-item position-relative {{ Request::is('tata-cara') ? 'active' : '' }}">
+                            <a class="nav-link" style="{{ Request::is('tata-cara') ? 'color: #243142;' : '' }}"
+                                href="
                                 /tata-cara">Tata Cara</a>
                         </li>
-                        @if (Auth::check())
-                        <li class="nav-item {{ Request::is('pengaduan') ? 'active' : ''  }} position-relative">
-                            <a class="nav-link" style="{{ Request::is('pengaduan') ? 'color: #243142;' : '' }}"
-                                href="/pengaduan">Pengaduan</a>
-                        </li>
-                        <li class="nav-item {{ Request::is('pengaduan/add') ? 'active' : ''  }} position-relative">
-                            <a class="nav-link" style="{{ Request::is('pengaduan/add') ? 'color: #243142;' : '' }}"
-                                href="/pengaduan/add">Buat Pengaduan</a>
-                        </li>
-                        <li class="nav-item position-relative">
-                            <a class="nav-link {{ Request::is('profile*') ? 'active' : ''  }}"
-                                style="{{ Request::is('profile*') ? 'color: #243142;' : '' }}"
-                                href="/profile">Profile</a>
-                        </li>
-                        @endif
                     </ul>
 
                     @if (Auth::check())
-                    <form action="/logout" method="POST">
-                        @csrf
-                        <button href="/logout"
-                            class="btn btn-fill text-white bg-danger border-danger btn-danger">Logout</button>
-                    </form>
+                        <a href="/dashboard" class="btn btn-fill text-white">Dashboard</a>
                     @else
-                    <a href="/login" class="btn btn-default btn-no-fill">Log In</a>
-                    <a href="/register" class="btn btn-fill text-white">Register</a>
+                        <a href="/login" class="btn btn-default btn-no-fill">Log In</a>
+                        <a href="/register" class="btn btn-fill text-white">Register</a>
                     @endif
                 </div>
             </nav>
             <div class="hr">
-                <hr style="
+                <hr
+                    style="
 							border-color: #F4F4F4;
 							background-color: #F4F4F4;
 							opacity: 1;
@@ -595,24 +557,24 @@
     <script src="{{ asset('/js/main.js') }}"></script>
 
     @if (session()->has('login-success'))
-    <script>
-        const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
-    Toast.fire({
-        icon: 'success',
-        title: 'Login berhasil!'
-    })
-    </script>
+            Toast.fire({
+                icon: 'success',
+                title: 'Login berhasil!'
+            })
+        </script>
     @endif
 
     @yield('scripts')

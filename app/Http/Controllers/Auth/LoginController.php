@@ -25,9 +25,6 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $request->session()->flash('login-success', 'Login berhasil!');
-            if (Auth::user()->level == 'masyarakat') {
-                return redirect()->intended('/');
-            }
 
             return redirect()->intended('/dashboard');
         }

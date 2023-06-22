@@ -10,7 +10,7 @@ class MasyarakatController extends Controller
 {
     public function index()
     {
-        $this->authorize('admin&staff');
+        $this->authorize('admin');
         $data["masyarakats"] = User::where('users.level', 'masyarakat')->get();
         $data["title"] = "Masyarakat";
         return view('dashboard.masyarakat.index', $data);
@@ -18,14 +18,14 @@ class MasyarakatController extends Controller
 
     public function add()
     {
-        $this->authorize('admin&staff');
+        $this->authorize('admin');
         $data["title"] = "Tambah Masyarakat";
         return view('dashboard.masyarakat.add', $data);
     }
 
     public function store(Request $request)
     {
-        $this->authorize('admin&staff');
+        $this->authorize('admin');
         $validatedData = $request->validate([
             'nik' => 'required|min:16|unique:users',
             'nama' => 'required',
@@ -44,7 +44,7 @@ class MasyarakatController extends Controller
 
     public function edit(User $masyarakat)
     {
-        $this->authorize('admin&staff');
+        $this->authorize('admin');
         $data = User::where('users.username', $masyarakat->username)->get();
         return view('dashboard.masyarakat.edit', [
             'masyarakat' => $data[0],
@@ -54,7 +54,7 @@ class MasyarakatController extends Controller
 
     public function update(Request $request, User $masyarakat)
     {
-        $this->authorize('admin&staff');
+        $this->authorize('admin');
         $rules = [
             'nama' => 'required',
             'telp' => 'required',
@@ -89,7 +89,7 @@ class MasyarakatController extends Controller
 
     public function destroy(User $masyarakat)
     {
-        $this->authorize('admin&staff');
+        $this->authorize('admin');
         User::destroy($masyarakat->id);
         return redirect('/masyarakat')->with('success', 'Data Masyarakat Berhasil Dihapus!');
     }

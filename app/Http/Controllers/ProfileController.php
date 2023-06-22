@@ -12,17 +12,15 @@ class ProfileController extends Controller
     public function index()
     {
         if (Auth::user()->level == 'masyarakat') {
-            $data = User::where('users.id', Auth::user()->id)->get();
-            return view('home.profile.index', [
-                'user' => $data[0],
-            ]);
+            $data = User::where('users.id', Auth::user()->id)->get()->first();
         } else {
-            $data = User::where('users.id', Auth::user()->id)->get();
-            return view('dashboard.profile.index', [
-                'user' => $data[0],
-                'title' => 'Profile Saya'
-            ]);
+            $data = User::where('users.id', Auth::user()->id)->get()->first();
         }
+
+        return view('dashboard.profile.index', [
+            'user' => $data,
+            'title' => 'Profile Saya'
+        ]);
     }
 
     public function update(Request $request, User $profile)

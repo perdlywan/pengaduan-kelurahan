@@ -15,7 +15,7 @@ class PengaduanController extends Controller
 
         if (Auth::user()->level == 'masyarakat') {
             $data['pengaduan'] = Pengaduan::where('user_id', Auth::user()->id)->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
-            return view('home.pengaduan.index', $data);
+            return view('dashboard.pengaduan.index', $data);
         } else {
             $data['pengaduan'] = Pengaduan::with('user', 'modified')->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
             return view('dashboard.pengaduan.index', $data);
@@ -26,7 +26,7 @@ class PengaduanController extends Controller
     {
         $this->authorize('masyarakat');
         $data['title'] = 'Buat Pengaduan';
-        return view('home.pengaduan.add', $data);
+        return view('dashboard.pengaduan.add', $data);
     }
 
     public function store(Request $request)
@@ -75,18 +75,14 @@ class PengaduanController extends Controller
         if (Auth::user()->level == 'masyarakat') {
             $data = Pengaduan::where('id', $id)->where('user_id', Auth::user()->id)->first();
 
-            return view('home.pengaduan.edit', [
-                'pengaduan' => $data,
-                'title' => 'Ubah Data Pengaduan'
-            ]);
         } else {
-            $pengaduan = Pengaduan::where('id', $id)->with('user')->first();
-
-            return view('dashboard.pengaduan.edit', [
-                'pengaduan' => $pengaduan,
-                'title' => "Ubah Data Pengaduan"
-            ]);
+            $data = Pengaduan::where('id', $id)->with('user')->first();
         }
+
+        return view('dashboard.pengaduan.edit', [
+            'pengaduan' => $data,
+            'title' => 'Ubah Data Pengaduan'
+        ]);
     }
 
     public function update(Request $request, $id)

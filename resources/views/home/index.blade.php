@@ -13,7 +13,7 @@
                     <p class="text-caption">
                         Punya keluhan? Yuk laporkan ke kami!
                     </p>
-                    <div
+                    {{-- <div
                         class="d-flex flex-sm-row flex-column align-items-center mx-auto mx-lg-0 justify-content-center justify-content-lg-start gap-3">
                         @if (Auth::check())
                             <a href="/pengaduan/add" class="btn btn-get text-white d-inline-flex">
@@ -24,7 +24,7 @@
                                 Buat Pengaduan
                             </button>
                         @endif
-                    </div>
+                    </div> --}}
             </div>
 
             <!-- Right Column -->
@@ -65,55 +65,7 @@
             </div>
         </div>
     </div>
-
-    <div id="tata-cara" class="container py-4 py-xl-5">
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-4" style="margin-top: 24px;">
-            <div class="col">
-                <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
-                        src="{{ asset('images/tulis laporan.png') }}">
-                    <div class="py-4">
-                        <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">1. Tulis
-                            Laporan</h4>
-                        <p class="text-caption" style="color: #243142;">Tulis laporan keluhan Anda dengan jelas
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
-                        src="{{ asset('images/proses verifikasi.png') }}">
-                    <div class="py-4">
-                        <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">2. Laporan Diproses
-                        </h4>
-                        <p class="text-caption" style="color: #243142;">Tunggu sampai laporan Anda diverifikasi
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
-                        src="{{ asset('images/tindak lanjut.png') }}">
-                    <div class="py-4">
-                        <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">3. Tindak
-                            Lanjut</h4>
-                        <p class="text-caption" style="color: #243142;">Laporan Anda sedang dalam tindak lanjut
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div><img class="rounded img-fluid d-block m-auto fit-cover" style="height: 200px;"
-                        src="{{ asset('images/selesai.png') }}">
-                    <div class="py-4">
-                        <h4 style="font-family: Poppins, sans-serif;font-weight: bold;color: #243142;">4.
-                            Selesai</h4>
-                        <p class="text-caption" style="color: #243142;">Laporan pengaduan telah selesai ditindak
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@endsection
 
 @section('scripts')
     <script>
@@ -144,4 +96,3 @@
     </script>
 @endsection
 
-@endsection
